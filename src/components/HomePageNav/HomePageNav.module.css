@@ -1,0 +1,40 @@
+.homePageNavItemWrapper {
+  overflow: auto;
+  white-space: nowrap;
+  /* margin-top: 1.7rem; */
+  margin-top: 2vh;
+  width: 95%;
+  margin-left: auto;
+  
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.homePageNavItemWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.homePageNavItemWrapper {
+  font-size: 1.2em;
+  /* font-size: 0.8rem; */
+}
+
+.homePageNavItem {
+  padding: 5px 0;
+  color: var(--muted);
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.homePageNavItemSelected {
+  padding: 5px 0;
+  border-bottom: 3px solid var(--one-color);
+  color: var(--white);
+}

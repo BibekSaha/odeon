@@ -1,0 +1,18 @@
+.navBar {
+  display: flex;
+  position: fixed;
+  justify-content: space-around;
+  width: 100%;
+  padding: 1vh 0;
+  bottom: 0;
+  background-color: var(--heavier-muted);
+}
+
+
+.selectedFirstPart svg {
+  stroke: var(--one-color);
+}
+
+.selectedSecondPart svg {
+  fill: var(--one-color);
+}
