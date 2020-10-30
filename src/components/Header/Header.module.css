@@ -1,7 +1,27 @@
-.header {
+.headerWrapper {
   width: 90%;
   margin: 1.2rem auto;
-  font-size: 3em;
-  /* font-size: 2rem */
+  display: flex;
+  justify-content: space-between;
   font-family: 'karla', var(--fonts);
+  align-items: center;
+}
+
+.header {
+  font-size: 3em;
+  /* font-size: 2rem; */
+}
+
+.headerDropdown {
+  font-size: 1rem;
+  padding: 0.2rem 1rem;
+  color: var(--white);
+  background-color: var(--primary);
+  border: none;
+  font-weight: 500;
+}
+
+.headerDropdown:focus {
+  outline: none;
+  border: none;
 }

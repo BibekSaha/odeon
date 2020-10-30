@@ -8,6 +8,7 @@ const PopularMovies = ({ popularMovies, popularMoviesAction }) => {
     <HomePageSection
       state={popularMovies}
       action={popularMoviesAction}
+      type="movie"
     />
   );
 };

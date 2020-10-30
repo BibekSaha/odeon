@@ -2,12 +2,13 @@
   overflow: auto;
   white-space: nowrap;
   /* margin-top: 1.7rem; */
-  margin-top: 2vh;
+  margin-top: 1.8vh;
   width: 95%;
   margin-left: auto;
   
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

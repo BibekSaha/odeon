@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import firebase from './firebase';
+import 'firebase/auth';
 import reducers from './reducers';
 import './index.css';
 import App from './components/App/App';
+import { signInAction, signOutAction } from './actions/authenticationAction';
 import * as serviceWorker from './serviceWorker';
+import resetAction from './actions/resetAction';
 
-const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(thunk),
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+
+const FirebaseAppWrapper = ({ children }) => {
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) store.dispatch(signInAction(user));
+      else {
+        store.dispatch(signOutAction());
+        store.dispatch(resetAction());
+      }
+    });
+  }, []);
+
+  return children;
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <FirebaseAppWrapper>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </FirebaseAppWrapper>
   </React.StrictMode>,
   document.getElementById('root')
 );

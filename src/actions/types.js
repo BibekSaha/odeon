@@ -1,5 +1,32 @@
 export const TRENDING_MOVIES = 'TRENDING_MOVIES';
 export const POPULAR_MOVIES = 'POPULAR_MOVIES';
+export const TOP_RATED_MOVIES = 'TOP_RATED_MOVIES';
+export const DRAMA_MOVIES = 'DRAMA_MOVIES';
+export const MYSTERY_MOVIES = 'MYSTERY_MOVIES';
+
+export const TRENDING_TV = 'TRENDING_TV';
+export const POPULAR_TV = 'POPULAR_TV';
+export const TOP_RATED_TV = 'TOP_RATED_TV';
+export const NETFLIX_TV = 'NETFLIX_TV';
+export const AMAZON_TV = 'AMAZON_TV';
 
 export const TRENDING_MOVIES_TAB = 'TRENDING_MOVIES_TAB';
 export const POPULAR_MOVIES_TAB = 'POPULAR_MOVIES_TAB';
+export const TOP_RATED_MOVIES_TAB = 'TOP_RATED_MOVIES_TAB';
+export const DRAMA_MOVIES_TAB = 'DRAMA_MOVIES_TAB';
+export const MYSTERY_MOVIES_TAB = 'MYSTERY_MOVIES_TAB';
+
+export const TRENDING_TV_TAB = 'TRENDING_TV_TAB';
+export const POPULAR_TV_TAB = 'POPULAR_TV_TAB';
+export const TOP_RATED_TV_TAB = 'TOP_RATED_TV_TAB';
+export const NETFLIX_TV_TAB = 'NETFLIX_TV_TAB';
+export const AMAZON_TV_TAB = 'AMAZON_TV_TAB';
+
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_OUT = 'SING_OUT';
+
+export const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST';
+export const INITIAL_ADD_TO_WATCHLIST = 'INITIAL_ADD_TO_WATCHLIST';
+export const CLEAR_WATCHLIST = 'CLEAR_WATCHLIST';
+
+export const RESET = 'RESET';

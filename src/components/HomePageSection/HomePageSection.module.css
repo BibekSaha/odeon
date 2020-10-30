@@ -17,6 +17,7 @@
   margin-right: 10%;
   scroll-snap-align: center;
   scroll-snap-stop: normal;
+  position: relative;
 }
 
 .homePageSectionItem:first-child {
@@ -24,22 +25,17 @@
 }
 
 .homePageSectionItem:last-child {
-  padding-right: 3.7rem;
+  padding-right: 2rem;
+  /* padding-right: 3.7rem; */
 }
 
 .homePageSectionItem_image {
   border-radius: 10px;
+  border-top-left-radius: 5px;
   width: 70vw;
   /* height: 50vh; */
   box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05),
     5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* .notInViewImage {} */
-
-@keyframes moveFromView{
-  from { transform: scale(1); }
-  to { transform: scale(0.5); }
 }
 
 .homePageSectionDetails {
@@ -47,8 +43,8 @@
   margin: auto;
   margin-top: 1rem;
   /* margin-bottom: 1.2rem; */
-  margin-bottom: 8.5vh;
-  /* margin-bottom: 7.5em; */
+  /* margin-bottom: 8.5vh; */
+  margin-bottom: 8.7em;
   color: dimgray;
 }
 
@@ -66,4 +62,11 @@
 .homePageSectionDetails h3 {
   /* font-size: 0.9rem; */
   font-size: 1.35em;
+}
+
+.bookMarkAddIcon {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  opacity: 0.6;
 }

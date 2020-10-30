@@ -8,6 +8,7 @@ const TrendingMovies = ({ trendingMovies, trendingMoviesAction }) => {
     <HomePageSection
       state={trendingMovies}
       action={trendingMoviesAction}
+      type="movie"
     />
   );
 };

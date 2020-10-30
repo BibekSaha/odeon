@@ -1,0 +1,39 @@
+.loading {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.wrapper img {
+  border-radius: 50%;
+  margin-bottom: 2vh;
+  height: 96px;
+}
+
+.wrapper h2 {
+  font-size: 2.5rem;
+}
+
+.wrapper p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.signOut {
+  margin-top: 2vh;
+  padding: 5px 15px;
+  background-color: var(--netflix-red);
+  font-weight: 500;
+  font-size: 1.2rem;
+  border-radius: 2px;
+}

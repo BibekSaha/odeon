@@ -20,7 +20,9 @@
   --one-color: #fa7777;
   --heavy-muted: #27272a;
   --heavier-muted: #1c1c1e;
-  --ligh-muted: dimgray;
+  --light-muted: dimgray;
+  --blue: #537ECC;
+  --netflix-red: #e50914;
 }
 
 body {

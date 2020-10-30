@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchIcon = ({ height, width, strokeColor }) => (
+const SearchIcon = ({ height, width, strokeColor, className }) => (
   <svg
     fill="none"
     height={height}
@@ -8,6 +8,7 @@ const SearchIcon = ({ height, width, strokeColor }) => (
     stroke={strokeColor}
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    className={className}
   >
     <path
       strokeLinecap="round"

@@ -1,0 +1,79 @@
+.inputWrapper {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 1.2rem;
+  text-align: center;
+  position: relative;
+}
+
+/* .notFocusedInput,
+.focusedInput {
+  border: none;
+  padding: 0.7rem 0;
+} */
+
+/* .notFocusedInput {
+  width: 80%;
+  border: 1px solid var(--muted);
+  background-color: transparent;
+  border-radius: 2px;
+  color: var(--white);
+  padding-left: 1rem;
+} */
+
+/* .focusedInput {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 1rem 0.8rem;
+  background-color: var(--muted);
+  color: var(--white);
+} */
+
+.focusedInput {
+  /* background-color: var(--muted); */
+  background-color: var(--heavy-muted);
+  color: var(--white);
+  width: 100%;
+  /* margin: 0 auto; */
+  border: none;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.focusedInput:focus {
+  outline: none;
+}
+
+.focusedInput::placeholder {
+  /* color: var(--heavy-muted); */
+  /* color: #A6A6A6; */
+  /* color: #959595; */
+  color: var(--muted);
+}
+
+.notFocusedInput::placeholder,
+.focusedInput::placeholder {
+  /* text-align: center; */
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+}
