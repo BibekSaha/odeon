@@ -1,6 +1,12 @@
 import React from 'react';
 
-const BookMarkAddIcon = ({ className, height, width, strokeColor, onClick }) => {
+const BookMarkAddIcon = ({
+  className,
+  height,
+  width,
+  strokeColor,
+  onClick,
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

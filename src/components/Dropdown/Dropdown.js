@@ -5,11 +5,15 @@ import {
   trendingTvTabAction,
 } from '../../actions/homePageTabActions';
 
-const Dropdown = ({ trendingTvTabAction, trendingMoviesTabAction, className }) => {
+const Dropdown = ({
+  trendingTvTabAction,
+  trendingMoviesTabAction,
+  className,
+}) => {
   const [value, setValue] = useState('movie');
 
   const handleOnChange = useCallback(
-    (e) => {
+    e => {
       if (e.target.value === 'tv') {
         setValue('tv');
         trendingTvTabAction();

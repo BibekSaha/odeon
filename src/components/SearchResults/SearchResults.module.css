@@ -14,17 +14,17 @@
   margin-top: 1.2rem;
 }
 
-/* .searchResult:last-child {
+.searchResult:last-child {
   margin-bottom: 4rem;
-} */
+}
 
 .searchList:last-child {
   margin-bottom: 4rem;
 }
 
-.searchResult:nth-child(even) {
+/* .searchResult:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.1);
-}
+} */
 
 .searchResultImage {
   width: 100px;
@@ -87,4 +87,11 @@
   margin: 1rem;
   margin-top: .2rem;
   margin-left: 0;
+}
+
+.loading {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

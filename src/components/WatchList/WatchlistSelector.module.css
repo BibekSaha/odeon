@@ -1,0 +1,64 @@
+.wrapper {
+  position: fixed;
+  display: initial;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(3px);
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.container {
+  position: fixed;
+  background-color: var(--primary);
+  bottom: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  animation: showMenu 300ms ease-in-out;
+}
+
+@keyframes showMenu {
+  from { bottom: -300px; }
+  to { bottom: 0; }
+}
+
+.title {
+  color: var(--white);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.list {
+  color: var(--muted);
+  font-size: 1rem;
+  /* padding-left: 1rem; */
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.listItem {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.saveButton {
+  background-color: var(--heavy-muted);
+  width: 80%;
+  margin: auto;
+  font-size: 1.1rem;
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.selected {
+  color: var(--white);
+}

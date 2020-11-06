@@ -10,10 +10,16 @@ const useQuery = () => {
 const Search = () => {
   const [debouncedTerm, setDebouncedTerm] = useState('');
   const query = useQuery();
+  
+  // useEffect(() => () =>
+  //   debouncedTerm &&
+  //   window.history.pushState({}, '', `/search/q=${debouncedTerm}`),
+  //   [debouncedTerm]
+  // );
 
   useEffect(() => {
     setDebouncedTerm(query.get('q'));
-  }, [query, debouncedTerm]);
+  }, [query]);
 
   return (
     <div>

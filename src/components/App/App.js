@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import firebase from '../../firebase';
@@ -13,13 +13,30 @@ import Authentication from '../Authentication/Authentication';
 import Account from '../Account/Account';
 import WatchList from '../WatchList/WatchList';
 import { initAddToWatchlist } from '../../actions/watchlistActions';
+import WatchlistContext from '../../context/watchlist';
+import style from './App.module.css';
 
 const App = ({ auth, initAddToWatchlist }) => {
+  const [isLandscape, setIsLandscape] = useState(
+    window.matchMedia('(orientation: landscape)').matches
+  );
+  const [watchlistFetched, setWatchlistFetched] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      !window.isFocused &&
+        setIsLandscape(window.matchMedia('(orientation: landscape)').matches);
+    });
+  }, []);
+
   useEffect(() => {
     if (auth.isSignedIn) {
       const db = firebase.firestore();
       const docRef = db.collection('users').doc(auth.props.uid);
-      docRef.get().then(doc => doc.exists && initAddToWatchlist(doc.data()));
+      docRef.get().then(doc => {
+        if (doc.exists) initAddToWatchlist(doc.data());
+        setWatchlistFetched(true);
+      });
       docRef.onSnapshot(doc => {
         // const source = doc.metadata.hasPendingWrites ? 'Local' : 'Server';
         // console.log(source);
@@ -28,6 +45,9 @@ const App = ({ auth, initAddToWatchlist }) => {
     }
   }, [auth, initAddToWatchlist]);
 
+  if (isLandscape)
+    return <h1 className={style.landscape}>Landscape is not supported...</h1>;
+
   return (
     <div>
       <Router>
@@ -35,7 +55,9 @@ const App = ({ auth, initAddToWatchlist }) => {
           <Route exact path="/">
             <Header />
             <HomePageNav />
-            <HomePage />
+            <WatchlistContext.Provider value={{ watchlistFetched, auth }}>
+              <HomePage />
+            </WatchlistContext.Provider>
             <NavBar />
           </Route>
           <Route exact path={['/search', '/search?q=:query']}>
@@ -43,7 +65,7 @@ const App = ({ auth, initAddToWatchlist }) => {
             <NavBar />
           </Route>
           <Route exact path="/watchlist">
-            <WatchList />
+            <WatchList watchlistFetched={watchlistFetched} />
             <NavBar />
           </Route>
           <Route exact path="/account">

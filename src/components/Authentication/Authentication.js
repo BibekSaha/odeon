@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signInAction } from '../../actions/authenticationAction';
 import style from './Authentication.module.css';
@@ -9,10 +9,15 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const Authentication = ({ auth, signInAction }) => {
   const history = useHistory();
+  const query = new URLSearchParams(useLocation().search);
 
   useEffect(() => {
-    if (auth.isSignedIn) history.push('/');
-  }, [auth.isSignedIn, history]);
+    const redirectURI = query.get('redirect');
+    if (auth.isSignedIn) {
+      if (redirectURI) history.push(`/${redirectURI}`);
+      else history.push('/');
+    }
+  }, [auth.isSignedIn, history, query]);
 
   const handleOnClick = async () => {
     const firebase = await import('firebase/app');
@@ -35,7 +40,9 @@ const Authentication = ({ auth, signInAction }) => {
   return auth.isSignedIn === false ? (
     <div className={style.wrapper}>
       <div>
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}><h1 className={style.header}>Lemon Milk</h1></Link>
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <h1 className={style.header}>Lemon Milk</h1>
+        </Link>
         <div onClick={handleOnClick} className={style.gSignInButton}>
           <div className={style.contentWrapper}>
             <div className={style.logoWrapper}>

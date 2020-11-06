@@ -1,24 +1,32 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import dateFormatter from '../../utils/date';
+import Loader from 'react-loader-spinner';
+import ItemBlock from '../ItemBlock/ItemBlock';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import style from './SearchResults.module.css';
 
 const SearchResults = ({ debouncedTerm }) => {
   const history = useHistory();
   const [searchResults, setSearchResults] = useState(null);
+  const [showLoader, setShowLoader] = useState(false);
   const termRef = useRef(debouncedTerm);
 
   useEffect(() => {
-    if (debouncedTerm && termRef.current !== debouncedTerm)
+    if (debouncedTerm && termRef.current !== debouncedTerm) {
+      setShowLoader(true);
       fetch(
-        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_TOKEN}&language=en-US&query=${debouncedTerm}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/multi?api_key=${
+          process.env.REACT_APP_TOKEN
+        }&language=en-US&query=${debouncedTerm}&page=1&include_adult=false`
       )
         .then(resp => resp.json())
-        .then(resp => { 
+        .then(resp => {
           setSearchResults(resp);
           termRef.current = debouncedTerm;
+          setShowLoader(false);
         });
+    }
   }, [debouncedTerm]);
 
   const renderList =
@@ -44,8 +52,7 @@ const SearchResults = ({ debouncedTerm }) => {
                   <h3 className={style.searchHeader}>{result.name}</h3>
                   <br />
                   <p>
-                    Known for:{' '}
-                    <strong style={{}}>{result.known_for_department}</strong>
+                    Known for: <strong>{result.known_for_department}</strong>
                   </p>
                 </div>
               </div>
@@ -72,49 +79,21 @@ const SearchResults = ({ debouncedTerm }) => {
           )
         );
       }
-      const date = result.release_date || result.first_air_date;
-      const isSeries = result.media_type === 'tv';
 
-      return (
-        !!result.poster_path && (
-          <Link
-            to={`/${result.media_type}/${result.id}`}
-            style={{ color: 'inherit', textDecoration: 'none' }}
-            key={result.id}
-          >
-            <div
-              // onClick={() => history.push(`/${result.media_type}/${result.id}`)}
-              className={style.searchResult}
-            >
-              <LazyLoadImage
-                src={`https://image.tmdb.org/t/p/w200/${result.poster_path}`}
-                alt={result.title || result.name}
-                effect="blur"
-                className={style.searchResultImage}
-              />
-              <div className={style.searchResultDetails}>
-                <h1 className={style.searchHeader}>
-                  {result.name || result.title}
-                </h1>
-                <br />
-                <div>
-                  <p>
-                    {dateFormatter(date)}
-                    {isSeries && ' | TV Series'}
-                  </p>
-                  <p>
-                    <span role="img" aria-label="star">
-                      ⭐
-                    </span>{' '}
-                    {parseFloat(result.vote_average) || 'N/A'}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Link>
-        )
-      );
+      result.release_date = result.release_date || result.first_air_date;
+      return !!result.poster_path && <ItemBlock key={result.id} {...result} />;
     });
+
+  if (showLoader)
+    return (
+      <Loader
+        className={style.loading}
+        type="TailSpin"
+        color="var(--white)"
+        height={80}
+        width={80}
+      />
+    );
 
   if (searchResults && searchResults.total_results === 0)
     return (

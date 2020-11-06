@@ -1,0 +1,83 @@
+.loading {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watchlistWrapper {
+  margin-bottom: 4.5rem;
+}
+
+.settingsWrapper {
+  padding: 1rem 0;
+  padding-bottom: 0.5rem;
+  margin: auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--heavy-muted);
+}
+
+.settingsWrapper p {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.settingsIcons {
+  flex: 0.25;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notFound {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--muted);
+  text-align: center;
+  font-weight: 500;
+}
+
+.itemWrapper {
+  position: relative;
+}
+
+.animation {
+  opacity: 1;
+  transform: scale(1);
+  animation: itemCardAnimation 500ms ease-in-out;
+}
+
+@keyframes itemCardAnimation {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1);}
+}
+
+/* .itemWrapper:nth-child(odd) {
+  animation: itemCardLeft 500ms ease-in-out; 
+}
+
+.itemWrapper:nth-child(even) {
+  animation: itemCardRight 500ms ease-in-out;
+} */
+
+/* @keyframes itemCardLeft {
+  from { left: -25px; opacity: 0; }
+  to { left: 0; opacity: 1; }
+}
+
+@keyframes itemCardRight {
+  from { right: -25px; opacity: 0; }
+  to { right: 0; opacity: 1; }
+} */
+
+.itemRemove {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}

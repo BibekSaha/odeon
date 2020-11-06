@@ -1,6 +1,7 @@
 .placeholder {
-  width: 600px;
-  height: 400px;
-  background-color: white;
+  width: 287.69px;
+  height: 431.53px;
   border-radius: 10px;
+  border-top-left-radius: 5px;
+  background-color: var(--primary);
 }

@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Loader from 'react-loader-spinner';
 import firebase from '../../firebase';
 import 'firebase/auth';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import style from './Account.module.css';
 
 const Account = ({ auth }) => {
   const history = useHistory();
-
-  useEffect(() => {
-    if (auth.isSignedIn === false) history.push('/login');
-  }, [auth, history]);
 
   const handleSignOut = () => {
     firebase.auth().signOut();
@@ -40,7 +36,7 @@ const Account = ({ auth }) => {
         </div>
       </div>
     );
-  else return null;
+  else return <Redirect to="/login?redirect=account" />;
 };
 
 const mapStateToProps = ({ auth }) => ({ auth });

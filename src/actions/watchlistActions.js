@@ -1,13 +1,13 @@
 import { ADD_TO_WATCHLIST, CLEAR_WATCHLIST, INITIAL_ADD_TO_WATCHLIST } from './types';
 
-export default ({ id, timestamp }) => {
+export default watchlist => {
   return {
     type: ADD_TO_WATCHLIST,
-    payload: {id, timestamp}
+    payload: watchlist
   };
 };
 
-export const initAddToWatchlist = (watchlist) => {
+export const initAddToWatchlist = watchlist => {
   return {
     type: INITIAL_ADD_TO_WATCHLIST,
     payload: watchlist

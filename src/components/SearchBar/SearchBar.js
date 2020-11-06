@@ -8,6 +8,8 @@ const SearchBar = ({ setDebouncedTerm }) => {
   const [term, setTerm] = useState('');
   const inputRef = useRef(null);
 
+  // useEffect(() => () => window.history.pushState({}, '', `/search?q=${e.target.value}`), []);
+
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedTerm(term), 800);
     return () => clearTimeout(timer);
@@ -29,8 +31,8 @@ const SearchBar = ({ setDebouncedTerm }) => {
             window.history.pushState({}, '', `/search?q=${e.target.value}`);
         }}
         ref={inputRef}
-        // onFocus={() => setClassName(style.focusedInput)}
-        // onBlur={() => setClassName(style.notFocusedInput)}
+        onFocus={() => { window.isFocused = true; }}
+        onBlur={() => { window.isFocused = false; }}
         // className={className}
         className={style.focusedInput}
         placeholder="Movies, Geners, Actors..."
