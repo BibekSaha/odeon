@@ -31,8 +31,8 @@ const SearchBar = ({ setDebouncedTerm }) => {
             window.history.pushState({}, '', `/search?q=${e.target.value}`);
         }}
         ref={inputRef}
-        onFocus={() => { window.isFocused = true; }}
-        onBlur={() => { window.isFocused = false; }}
+        // onFocus={() => { window.isFocused = true; }}
+        // onBlur={() => { window.isFocused = false; }}
         // className={className}
         className={style.focusedInput}
         placeholder="Movies, Geners, Actors..."

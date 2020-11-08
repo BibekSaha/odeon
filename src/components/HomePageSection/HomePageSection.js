@@ -4,16 +4,15 @@ import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { InView } from 'react-intersection-observer';
 import Loader from 'react-loader-spinner';
+import BookMark from '../BookMark/BookMark';
 import firebase from '../../firebase';
 import 'firebase/firestore';
 import dateFormatter from '../../utils/date';
 import style from './HomePageSection.module.css';
-// import BookMarkAddIcon from '../icons/BookMarkAddIcon';
 import addToWatchlistAction from '../../actions/watchlistActions';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-
-import BookMark from '../BookMark/BookMark';
 // import 'react-lazy-load-image-component/src/effects/blur.css';
+import Placeholder from '../Placeholder/Placeholder';
 
 const HomePageSection = ({
   action,
@@ -40,7 +39,7 @@ const HomePageSection = ({
   }, [action, state.results.length]);
 
   const renderList =
-    !!Object.keys(state.results).length &&
+    !!state.results.length &&
     state.results.map((item, i) => (
       <InView
         as="div"
@@ -49,17 +48,28 @@ const HomePageSection = ({
           if (inView) {
             setCurrent(item);
             if (i === state.results.length - 1) setTimeout(action, 1000);
+            // if (i === state.results.length - 1) action();
           }
         }}
         className={`${style.homePageSectionItem}`}
         threshold={0.7}
       >
+        <LazyLoadImage
+          src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+          alt={item.title}
+          className={style.homePageSectionItem_image}
+          // effect="blur"
+          // threshold="500"
+          onClick={() => {
+            history.push(`/${type}/${current.id}`);
+          }}
+          placeholder={<Placeholder />}
+        />
         <BookMark
           height="2rem"
           width="2rem"
           strokeColor={'var(--light-muted)'}
           bookmarked={!!watchlist[item.id]}
-          // strokeColor={watchlist[item.id] ? 'blue' : 'var(--netflix-red)'}
           onClick={() => {
             if (!auth.isSignedIn) return history.push('/login');
             const docRef = db.current.collection('users').doc(auth.props.uid);
@@ -106,17 +116,6 @@ const HomePageSection = ({
               )
               .catch(err => console.log(err));
           }}
-        />
-        <LazyLoadImage
-          src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          alt={item.title}
-          className={style.homePageSectionItem_image}
-          // effect="blur"
-          threshold="500"
-          onClick={() => {
-            history.push(`/${type}/${current.id}`);
-          }}
-          // placeholder={<Placeholder />}
         />
       </InView>
     ));

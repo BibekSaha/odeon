@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Placeholder from '../Placeholder/Placeholder';
 import dateFormatter from '../../utils/date';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import style from './ItemBlock.module.css';
 
 const ItemBlock = props => {
@@ -18,13 +20,14 @@ const ItemBlock = props => {
           <LazyLoadImage
             src={`https://image.tmdb.org/t/p/w200/${props.poster_path}`}
             alt={props.title || props.name}
-            effect="blur"
             className={style.searchResultImage}
+            height="150px"
+            width="100px"
+            // effect="blur"
+            placeholder={<Placeholder width="100px" paddingTop="150px" borderRadius="3px" />}
           />
           <div className={style.searchResultDetails}>
-            <h1 className={style.searchHeader}>
-              {props.name || props.title}
-            </h1>
+            <h1 className={style.searchHeader}>{props.name || props.title}</h1>
             <br />
             <div>
               <p>

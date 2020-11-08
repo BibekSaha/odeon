@@ -4,7 +4,6 @@
   margin-top: 5vh;
   /* margin-top: 3rem; */
   scroll-snap-type: x mandatory;
-
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -16,7 +15,6 @@
 .homePageSectionItem {
   margin-right: 10%;
   scroll-snap-align: center;
-  scroll-snap-stop: normal;
   position: relative;
 }
 
@@ -25,8 +23,8 @@
 }
 
 .homePageSectionItem:last-child {
+  /* padding-right: calc(15vw - 10%); */
   padding-right: 2rem;
-  /* padding-right: 3.7rem; */
 }
 
 .homePageSectionItem_image {

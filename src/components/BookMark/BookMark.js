@@ -6,7 +6,7 @@ import WatchlistContext from '../../context/watchlist';
 import style from './BookMark.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
-const BookMark = ({ height, width, strokeColor, onClick, bookmarked }) => {
+const BookMark = ({ height, width, onClick, bookmarked }) => {
   const [animationClass, setAnimationClass] = React.useState('');
   const context = useContext(WatchlistContext);
 
@@ -23,9 +23,8 @@ const BookMark = ({ height, width, strokeColor, onClick, bookmarked }) => {
       <BookMarkIcon
         height={height}
         width={width}
-        strokeColor={'var(--blue)'}
         onClick={() => {
-          window.navigator.vibrate(40);
+          if (context.auth.isSignedIn) window.navigator.vibrate(40);
           setAnimationClass(style.animation);
           onClick();
         }}
@@ -37,7 +36,6 @@ const BookMark = ({ height, width, strokeColor, onClick, bookmarked }) => {
       <BookMarkAddIcon
         height={height}
         width={width}
-        strokeColor={strokeColor}
         onClick={() => {
           window.navigator.vibrate(40);
           setAnimationClass(style.animation);

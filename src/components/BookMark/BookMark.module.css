@@ -13,6 +13,10 @@
   backdrop-filter: blur(3px);
 }
 
+.bookMarkAddIcon {
+  fill: var(--muted);
+}
+
 .bookMarkIcon {
   fill: var(--blue);
 }
@@ -22,6 +26,6 @@
 }
 
 @keyframes bubble {
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.15); }
   100% { transform: scale(1); }
 }

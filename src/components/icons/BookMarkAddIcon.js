@@ -4,7 +4,6 @@ const BookMarkAddIcon = ({
   className,
   height,
   width,
-  strokeColor,
   onClick,
 }) => {
   return (
@@ -12,7 +11,6 @@ const BookMarkAddIcon = ({
       xmlns="http://www.w3.org/2000/svg"
       height={height}
       width={width}
-      fill={strokeColor}
       className={className}
       viewBox="0 0 20 20"
       onClick={onClick}

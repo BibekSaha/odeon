@@ -18,14 +18,14 @@ import style from './App.module.css';
 
 const App = ({ auth, initAddToWatchlist }) => {
   const [isLandscape, setIsLandscape] = useState(
-    window.matchMedia('(orientation: landscape)').matches
+    document.documentElement.clientWidth > 500
   );
   const [watchlistFetched, setWatchlistFetched] = useState(false);
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      !window.isFocused &&
-        setIsLandscape(window.matchMedia('(orientation: landscape)').matches);
+      setIsLandscape(document.documentElement.clientWidth > 500);
+      // !window.isFocused && setIsLandscape(window.matchMedia('(orientation: landscape)').matches);
     });
   }, []);
 
@@ -46,7 +46,13 @@ const App = ({ auth, initAddToWatchlist }) => {
   }, [auth, initAddToWatchlist]);
 
   if (isLandscape)
-    return <h1 className={style.landscape}>Landscape is not supported...</h1>;
+    return (
+      <div className={style.landscapeWrapper}>
+        <h1 className={style.landscape}>
+          Rotate your device to have the best experience
+        </h1>
+      </div>
+    );
 
   return (
     <div>
