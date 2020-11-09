@@ -24,7 +24,7 @@ const ItemBlock = props => {
             height="150px"
             width="100px"
             // effect="blur"
-            placeholder={<Placeholder width="100px" paddingTop="150px" borderRadius="3px" />}
+            placeholder={<Placeholder width="100px" paddingTop="150%" borderRadius="3px" />}
           />
           <div className={style.searchResultDetails}>
             <h1 className={style.searchHeader}>{props.name || props.title}</h1>

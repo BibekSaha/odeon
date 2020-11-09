@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Loader from 'react-loader-spinner';
@@ -10,10 +10,9 @@ const SearchResults = ({ debouncedTerm }) => {
   const history = useHistory();
   const [searchResults, setSearchResults] = useState(null);
   const [showLoader, setShowLoader] = useState(false);
-  const termRef = useRef(debouncedTerm);
 
   useEffect(() => {
-    if (debouncedTerm && termRef.current !== debouncedTerm) {
+    if (debouncedTerm) {
       setShowLoader(true);
       fetch(
         `https://api.themoviedb.org/3/search/multi?api_key=${
@@ -23,7 +22,6 @@ const SearchResults = ({ debouncedTerm }) => {
         .then(resp => resp.json())
         .then(resp => {
           setSearchResults(resp);
-          termRef.current = debouncedTerm;
           setShowLoader(false);
         });
     }
