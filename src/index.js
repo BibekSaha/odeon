@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import firebase from './firebase';
 import 'firebase/auth';
-import reducers from './reducers';
 import './index.css';
 import App from './components/App/App';
+import store from './store';
 import { signInAction, signOutAction } from './actions/authenticationAction';
-import * as serviceWorker from './serviceWorker';
 import resetAction from './actions/resetAction';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+import * as serviceWorker from './serviceWorker';
 
 const FirebaseAppWrapper = ({ children }) => {
   useEffect(() => {

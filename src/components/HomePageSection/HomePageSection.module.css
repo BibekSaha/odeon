@@ -2,8 +2,10 @@
   display: flex;
   overflow: auto;
   margin-top: 5vh;
+  width: 100%;
   /* margin-top: 3rem; */
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -13,6 +15,7 @@
 }
 
 .homePageSectionItem {
+  display: inline-block;
   margin-right: 10%;
   scroll-snap-align: center;
   position: relative;

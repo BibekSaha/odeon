@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { connect } from 'react-redux';
-import firebase from '../../firebase';
-import 'firebase/firestore';
+import handleWatchlist from '../../utils/handleWatchlist';
 import Loader from 'react-loader-spinner';
 import WatchlistNumber from './WatchlistNumber';
 import WatchlistOrder from './WatchlistOrder';
@@ -30,11 +29,6 @@ const WatchList = ({ auth, watchlist, watchlistFetched }) => {
   const [filter, setFilter] = useState(
     +window.localStorage.getItem('watchlist-filter') || 1
   );
-
-  const db = useRef(null);
-  useEffect(() => {
-    db.current = firebase.firestore();
-  }, []);
 
   const memoizedFilteredWatchlist = useCallback(() => {
     let filteredWatchlist = filterWatchlist(watchlist, filter);
@@ -96,12 +90,7 @@ const WatchList = ({ auth, watchlist, watchlistFetched }) => {
               <div
                 onClick={e => {
                   e.stopPropagation();
-                  const docRef = db.current
-                    .collection('users')
-                    .doc(auth.props.uid);
-                  docRef.update({
-                    [item.props.id]: firebase.firestore.FieldValue.delete(),
-                  });
+                  handleWatchlist(auth, watchlist, item.props, null);
                 }}
                 className={style.itemRemove}
               >

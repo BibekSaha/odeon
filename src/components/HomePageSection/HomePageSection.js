@@ -5,31 +5,18 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { InView } from 'react-intersection-observer';
 import Loader from 'react-loader-spinner';
 import BookMark from '../BookMark/BookMark';
-import firebase from '../../firebase';
-import 'firebase/firestore';
+import Placeholder from '../Placeholder/Placeholder';
+import StarIcon from '../icons/StarIcon';
+import handleWatchlist from '../../utils/handleWatchlist';
 import dateFormatter from '../../utils/date';
 import style from './HomePageSection.module.css';
-import addToWatchlistAction from '../../actions/watchlistActions';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // import 'react-lazy-load-image-component/src/effects/blur.css';
-import Placeholder from '../Placeholder/Placeholder';
 
-const HomePageSection = ({
-  action,
-  state,
-  type,
-  auth,
-  watchlist,
-  addToWatchlistAction,
-}) => {
+const HomePageSection = ({ action, state, type, auth, watchlist }) => {
   const history = useHistory();
   const [current, setCurrent] = useState({});
   const [showLoader, setShowLoader] = useState(false);
-  const db = React.useRef(null);
-
-  useEffect(() => {
-    db.current = firebase.firestore();
-  }, []);
 
   useEffect(() => {
     if (state.results.length) return;
@@ -48,7 +35,6 @@ const HomePageSection = ({
           if (inView) {
             setCurrent(item);
             if (i === state.results.length - 1) setTimeout(action, 1000);
-            // if (i === state.results.length - 1) action();
           }
         }}
         className={`${style.homePageSectionItem}`}
@@ -61,7 +47,7 @@ const HomePageSection = ({
           // effect="blur"
           // threshold="500"
           onClick={() => {
-            history.push(`/${type}/${current.id}`);
+            history.push(`/${type}/${item.id}`);
           }}
           placeholder={<Placeholder />}
         />
@@ -72,49 +58,7 @@ const HomePageSection = ({
           bookmarked={!!watchlist[item.id]}
           onClick={() => {
             if (!auth.isSignedIn) return history.push('/login');
-            const docRef = db.current.collection('users').doc(auth.props.uid);
-            if (watchlist[item.id]) {
-              return docRef.update({
-                [item.id]: firebase.firestore.FieldValue.delete(),
-              });
-              // .then(() => console.log('deleted!!!!'));
-            }
-            const timestamp = Date.now();
-            // const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-            const id = item.id;
-            docRef
-              .set(
-                {
-                  [id]: {
-                    timestamp,
-                    props: {
-                      id: item.id,
-                      media_type: type,
-                      release_date: item.release_date || item.first_air_date,
-                      poster_path: item.poster_path,
-                      vote_average: item.vote_average,
-                      genre_ids: item.genre_ids,
-                      title: item.title || item.name,
-                    },
-                  },
-                },
-                { merge: true }
-              )
-              .then(() =>
-                addToWatchlistAction({
-                  timestamp,
-                  props: {
-                    id: item.id,
-                    media_type: type,
-                    release_date: item.release_date || item.first_air_date,
-                    poster_path: item.poster_path,
-                    vote_average: item.vote_average,
-                    genre_ids: item.genre_ids,
-                    title: item.title || item.name,
-                  },
-                })
-              )
-              .catch(err => console.log(err));
+            handleWatchlist(auth, watchlist, item, type);
           }}
         />
       </InView>
@@ -130,10 +74,14 @@ const HomePageSection = ({
         {current.title || current.name}
       </h1>
       <h3>{dateFormatter(current.release_date || current.first_air_date)}</h3>
-      <h3>
-        <span role="img" aria-label="star">
-          ⭐
-        </span>{' '}
+      <h3
+        style={{
+          display: 'inline-flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <StarIcon height="1.1rem" width="1.1rem" strokeColor="var(--star-yellow)" /> &nbsp;
         {parseFloat(current.vote_average) || 'N/A'}
       </h3>
     </>
@@ -159,6 +107,5 @@ const HomePageSection = ({
 };
 
 const mapStateToProps = ({ auth, watchlist }) => ({ auth, watchlist });
-const mapDispatchToProps = { addToWatchlistAction };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePageSection);
+export default connect(mapStateToProps)(HomePageSection);

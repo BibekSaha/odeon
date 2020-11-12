@@ -79,7 +79,7 @@ const App = ({ auth, initAddToWatchlist }) => {
             <NavBar />
           </Route>
           <Route exact path="/movie/:id">
-            <MovieDetails />
+            <MovieDetails watchlistFetched={watchlistFetched} />
           </Route>
           <Route exact path="/login">
             <Authentication />

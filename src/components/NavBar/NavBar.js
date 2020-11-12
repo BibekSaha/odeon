@@ -10,16 +10,16 @@ const NavBar = () => {
   return (
     <div className={style.navBar}>
       <NavLink exact activeClassName={style.selectedFirstPart} to="/">
-        <HomeIcon height="2rem" width="2rem" strokeColor="var(--muted)" />
+        <HomeIcon height="1.8rem" width="1.8rem" strokeColor="var(--muted)" />
       </NavLink>
       <NavLink exact activeClassName={style.selectedFirstPart} to="/search">
-        <SearchIcon height="2rem" width="2rem" strokeColor="var(--muted)" />
+        <SearchIcon height="1.8rem" width="1.8rem" strokeColor="var(--muted)" />
       </NavLink>
       <NavLink exact activeClassName={style.selectedSecondPart} to="/watchlist">
-        <WatchlistIcon height="2rem" width="2rem" strokeColor="var(--muted)" />
+        <WatchlistIcon height="1.8rem" width="1.8rem" strokeColor="var(--muted)" />
       </NavLink>
       <NavLink exact activeClassName={style.selectedSecondPart} to="/account">
-        <UserIcon height="2rem" width="2rem" strokeColor="var(--muted)" />
+        <UserIcon height="1.8rem" width="1.8rem" strokeColor="var(--muted)" />
       </NavLink>
     </div>
   );

@@ -7,17 +7,16 @@ import style from './SearchBar.module.css';
 const SearchBar = () => {
   const [term, setTerm] = useState('');
   const inputRef = useRef(null);
-  const timerRef = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
     // const timer = setTimeout(() => setDebouncedTerm(term), 800);
-    timerRef.current = setTimeout(
+    const timer = setTimeout(
       () =>
         term.trim() && history.push(`/search?q=${term.trim().toLowerCase()}`),
       800
     );
-    return () => clearTimeout(timerRef.current);
+    return () => clearTimeout(timer);
   }, [term, history]);
 
   return (
@@ -28,7 +27,12 @@ const SearchBar = () => {
         strokeColor="var(--muted)"
         className={style.searchIcon}
       />
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          term.trim() && history.push(`/search?q=${term.trim().toLowerCase()}`);
+        }}
+      >
         <input
           value={term}
           onChange={e => setTerm(e.target.value)}
