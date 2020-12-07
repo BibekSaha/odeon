@@ -1,0 +1,109 @@
+.loading {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.person {
+  overflow-x: hidden;
+}
+
+@keyframes reveal {
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  opacity: 0;
+  transform: scale(1.2);
+  animation: reveal 0.8s ease-out 1 forwards;
+}
+
+.posterImage {
+  width: 100vw;
+  overflow: hidden;
+}
+
+.gradient {
+  position: absolute;
+  bottom: 0;
+  height: 150px;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 18, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes fade-in {
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.name {
+  padding-left: 1rem;
+  margin: 3rem 0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+
+  opacity: 0;
+  transform: translateY(3rem);
+
+  animation: fade-in 1s ease-out 0.5s 1 forwards;
+}
+
+.peekInformation {
+  padding: 1rem;
+  color: gray;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  line-height: 1.5rem;
+  border-left: 3px solid gray;
+
+  opacity: 0;
+  transform: translateY(3rem);
+
+  animation: fade-in 1s ease-out 0.9s 1 forwards;
+}
+
+.biography {
+  margin: 0 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: gray;
+
+  opacity: 0;
+  transform: translateY(3rem);
+
+  animation: fade-in 1s ease-out 0.12s 1 forwards;
+}
+
+.images {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  opacity: 0;
+  transform: translateY(3rem);
+
+  animation: fade-in 1s ease-out 0.15s 1 forwards;
+}
+
+.image {
+  height: 13rem;
+  width: auto;
+  border-radius: 5px;
+  margin: 1rem;
+}

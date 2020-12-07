@@ -1,0 +1,46 @@
+@keyframes reveal {
+  100% {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: auto;
+  width: 100%;
+  line-height: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  opacity: 0;
+  animation: reveal 1s ease-out 1.5s forwards;
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.imageWrapper {
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+.imageWrapper:first-child {
+  margin-left: 1rem;
+}
+
+.imagesWrapper:last-child {
+  margin-right: 1rem;
+}
+
+.image {
+  width: 75px;
+  height: auto;
+  /* filter: grayscale(100%) brightness(60%) contrast(10000000%); */
+  filter: grayscale(100%) invert(100%) saturate(10);
+}

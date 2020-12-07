@@ -10,6 +10,12 @@
   padding: 0;
 }
 
+@keyframes reveal {
+  100% {
+    opacity: 1;
+  }
+}
+
 :root {
   --font: 'Sans Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -26,6 +32,8 @@
   --netflix-red: #e50914;
   --cool-green: #03DAC6;
   --star-yellow: #FDCC0D;
+  --light-brown: #8d4e16;
+  --reveal: reveal 1s ease-out 1.5s forwards;
 }
 
 body {
@@ -37,4 +45,9 @@ body {
   font-size: 2.5vw;
   background-color: var(--primary);
   color: var(--white);
+}
+
+.noscroll {
+  position: fixed;
+  overflow: hidden;
 }

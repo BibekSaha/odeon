@@ -1,0 +1,14 @@
+@keyframes fade-in {
+  100% {
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+}
+
+.poster {
+  height: 175px;
+  border-radius: 5px;
+  transform: translateY(-10px);
+  opacity: 0;
+  animation: fade-in 1.2s ease-out 0.5s 1 forwards;
+}

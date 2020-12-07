@@ -1,0 +1,14 @@
+@keyframes from-right {
+  100% {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+.runtime {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+  opacity: 0;
+  animation: from-right 1s ease-out 1.6s 1 forwards;
+}

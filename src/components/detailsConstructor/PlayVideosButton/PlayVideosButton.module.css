@@ -1,0 +1,6 @@
+.button {
+  background-color: var(--star-yellow);
+  color: var(--primary);
+  font-weight: bold;
+  filter: brightness(0.9);
+}

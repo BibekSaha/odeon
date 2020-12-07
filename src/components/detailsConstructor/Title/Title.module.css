@@ -1,0 +1,18 @@
+@keyframes reveal {
+  100% {
+    opacity: 1;
+  }
+}
+
+.title {
+  background: radial-gradient(#eff1ff 45%, #000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--white);
+  background-size: 100% 200%;
+  background-position: 50% 100%;
+  opacity: 0;
+  font-size: 1.3rem;
+  animation: reveal 0.8s ease-out 1s 1 forwards;
+}

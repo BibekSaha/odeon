@@ -1,0 +1,28 @@
+@keyframes from-right {
+  100% {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 15px;
+  opacity: 0;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: from-right 1s ease-out 1.1s 1 forwards;
+}
+
+.rating {
+  color: lightgray;
+}
+
+.date {
+  color: var(--muted);
+  font-weight: normal;
+}

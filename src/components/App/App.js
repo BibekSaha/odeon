@@ -9,9 +9,12 @@ import HomePage from '../HomePage/HomePage';
 import NavBar from '../NavBar/NavBar';
 import Search from '../Search/Search';
 import MovieDetails from '../MovieDetails/MovieDetails';
+import TvDetails from '../TvDetails/TvDetails';
+import PersonDetails from '../PersonDetails/PersonDetails';
 import Authentication from '../Authentication/Authentication';
 import Account from '../Account/Account';
 import WatchList from '../WatchList/WatchList';
+import ImageViewer from '../ImageViewer/ImageViewer';
 import { initAddToWatchlist } from '../../actions/watchlistActions';
 import WatchlistContext from '../../context/watchlist';
 import style from './App.module.css';
@@ -23,10 +26,13 @@ const App = ({ auth, initAddToWatchlist }) => {
   const [watchlistFetched, setWatchlistFetched] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    window['rotateScreenfd8@CQNke&T@'] = () =>
       setIsLandscape(document.documentElement.clientWidth > 500);
-      // !window.isFocused && setIsLandscape(window.matchMedia('(orientation: landscape)').matches);
-    });
+
+    window.addEventListener('resize', window['rotateScreenfd8@CQNke&T@']);
+
+    !window.isFocused &&
+      setIsLandscape(window.matchMedia('(orientation: landscape)').matches);
   }, []);
 
   useEffect(() => {
@@ -55,7 +61,13 @@ const App = ({ auth, initAddToWatchlist }) => {
     );
 
   return (
-    <div>
+    <div
+      onContextMenu={() =>
+        document.documentElement
+          .requestFullscreen()
+          .catch(err => console.log(err))
+      }
+    >
       <Router>
         <Switch>
           <Route exact path="/">
@@ -80,6 +92,15 @@ const App = ({ auth, initAddToWatchlist }) => {
           </Route>
           <Route exact path="/movie/:id">
             <MovieDetails watchlistFetched={watchlistFetched} />
+          </Route>
+          <Route exact path="/tv/:id">
+            <TvDetails watchlistFetched={watchlistFetched} />
+          </Route>
+          <Route exact path="/person/:id">
+            <PersonDetails />
+          </Route>
+          <Route exact path="/image-viewer/:imageId">
+            <ImageViewer />
           </Route>
           <Route exact path="/login">
             <Authentication />

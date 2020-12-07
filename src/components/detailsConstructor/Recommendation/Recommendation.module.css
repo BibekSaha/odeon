@@ -1,0 +1,30 @@
+.wrapper {
+  width: 95%;
+  margin: auto;
+  margin-bottom: 1vh;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: var(--reveal);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--heavy-muted);
+  color: gray;
+}
+
+.listWrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  border-radius: 5px;
+  margin: 1vh;
+}

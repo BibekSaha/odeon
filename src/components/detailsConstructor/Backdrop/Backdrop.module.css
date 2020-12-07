@@ -1,0 +1,33 @@
+@keyframes size-resize {
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.backdropWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.backdrop {
+  width: 100%;
+  height: auto;
+  max-height: 30vh;
+  object-fit: cover;
+  transform: scale(1.2);
+  opacity: 0;
+  animation: size-resize 0.8s ease-out 1 forwards;
+}
+
+.backdropGradient {
+  position: absolute;
+  bottom: 0;
+  height: 150px;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 18, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}

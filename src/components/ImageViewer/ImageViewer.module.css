@@ -1,0 +1,11 @@
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.imageWrapper {
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}

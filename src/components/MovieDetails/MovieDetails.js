@@ -1,27 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Loader from 'react-loader-spinner';
-import PlusIcon from '../icons/PlusIcon';
-import CheckIcon from '../icons/CheckIcon';
-import StarIcon from '../icons/StarIcon';
+
+import Backdrop from '../detailsConstructor/Backdrop/Backdrop';
+import Poster from '../detailsConstructor/Poster/Poster';
+import DetailsSection from '../detailsConstructor/DetailsSection/DetailsSection';
+import Title from '../detailsConstructor/Title/Title';
+import Duration from '../detailsConstructor/Duration/Duration';
+import WatchlistButton from '../detailsConstructor/WatchlistButton/WatchlistButton';
+import PlayVideosButton from '../detailsConstructor/PlayVideosButton/PlayVideosButton';
+import InformationWrapper from '../detailsConstructor/InformationWrapper/InformationWrapper';
+import RatingAndReleaseDate from '../detailsConstructor/RatingAndReleaseDate/RatingAndReleaseDate';
+import Overview from '../detailsConstructor/Overview/Overview';
+import Genres from '../detailsConstructor/Genres/Genres';
+import Recommendation from '../detailsConstructor/Recommendation/Recommendation';
+// import ProductionCompanies from '../detailsConstructor/ProductionCompanies';
+import Credit from '../detailsConstructor/Credit';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
+
 import handleWatchlist from '../../utils/handleWatchlist';
-import dateFormatter from '../../utils/date';
-import runtime from '../../utils/runtime';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import style from './MovieDetails.module.css';
 
 const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
   const { id } = useParams();
   const history = useHistory();
   const [movie, setMovie] = useState(null);
+  const [showVideos, setShowVideos] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TOKEN}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TOKEN}&language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
     )
       .then(resp => resp.json())
       .then(resp => setMovie(resp));
+
+    return () => {
+      setShowVideos(false);
+      setMovie(null);
+      document.body.style.overflow = 'auto';
+    };
   }, [id]);
 
   const handleOnClick = () => {
@@ -32,108 +51,52 @@ const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
     }
   };
 
-  const renderGenres =
-    movie &&
-    movie.genres &&
-    movie.genres.map((genere, i) => (
-      <div
-        onClick={() => window.navigator.vibrate(50)}
-        className={`${style.genre}`}
-      >
-        {genere.name}
-      </div>
-    ));
-
   const renderList = movie && (
     <>
-      <div className={style.backdropWrapper}>
-        <img
-          className={style.backdrop}
-          src={`https://image.tmdb.org/t/p/w500/${
-            movie.backdrop_path || movie.poster_path
-          }`}
-          alt={movie.original_title}
-        />
-        <div className={style.backdropGradient}></div>
-      </div>
+      <Backdrop
+        src={movie.backdrop_path || movie.poster_path}
+        title={movie.original_title}
+      />
 
-      <div className={style.posterSection}>
-        <img
-          className={style.poster}
-          src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+      <DetailsSection>
+        <Poster
+          src={movie.poster_path}
           alt={movie.original_title}
         />
 
-        <div className={style.movieInformation}>
-          <h1
-            style={{
-              background: 'radial-gradient(#eff1ff 45%, #000)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              color: 'var(--white)',
-              backgroundSize: '100% 200%',
-              backgroundPosition: '50% 100%',
-            }}
-          >
-            {movie.title}
-          </h1>
+        <InformationWrapper>
+          <Title title={movie.title} />
 
-          <div className={style.rating}>
-            <StarIcon
-              height="1.4rem"
-              width="1.2rem"
-              strokeColor="var(--star-yellow)"
-            />
-            &nbsp;{' '}
-            <strong
-              style={{
-                fontSize: '0.9rem',
-              }}
-            >
-              {parseFloat(movie.vote_average) || 'N/A'}&nbsp;
-              <span style={{ color: 'var(--muted)' }}>{'\t'}&middot;</span>
-              {'\t'}
-              <span style={{ color: 'var(--muted)', fontWeight: 'normal' }}>
-                {dateFormatter(movie.release_date)}
-              </span>
-            </strong>
-          </div>
-
-          <p className={style.runtime}>{runtime(movie.runtime)}</p>
-        </div>
-      </div>
-
-      <div
-        className={`${style.watchlistItem} ${
-          !watchlist[id] && style.watchlistItemNotPresent
-        }`}
-      >
-        {(auth.isSignedIn && !watchlistFetched) || auth.isSignedIn === null ? (
-          <Loader
-            type="TailSpin"
-            color="var(--primary)"
-            height={20}
-            width={20}
+          <RatingAndReleaseDate
+            rating={movie.vote_average}
+            releaseDate={movie.release_date}
           />
-        ) : (
-          <div onClick={handleOnClick} className={style.watchlistTextFormatter}>
-            {watchlist[id] ? (
-              <CheckIcon width="1.5rem" height="1.5rem" strokeColor="gray" />
-            ) : (
-              <PlusIcon
-                width="1.5rem"
-                height="1.5rem"
-                strokeColor="var(--primary)"
-              />
-            )}
-            <strong>
-              {watchlist[id] ? 'Added to Watchlist' : 'Add to Watchlist'}
-            </strong>
-          </div>
-        )}
-      </div>
-      <div className={style.overview}>{movie.overview}</div>
-      <div className={style.genresWrapper}>{renderGenres}</div>
+
+          <Duration type="movie" duration={movie.runtime} />
+        </InformationWrapper>
+      </DetailsSection>
+
+      <WatchlistButton
+        isPresent={!!watchlist[id]}
+        onClick={handleOnClick}
+        auth={auth}
+        watchlistFetched={watchlistFetched}
+      />
+
+      <PlayVideosButton setShowVideos={setShowVideos} />
+      {showVideos && (
+        <VideoPlayer setShow={setShowVideos} videos={movie.videos} />
+      )}
+
+      <Overview details={movie.overview} />
+      <Genres genres={movie.genres} />
+      {/* <ProductionCompanies companies={movie.production_companies} /> */}
+      <Credit people={movie.credits.cast} actionText="Top Cast" />
+      <Credit people={movie.credits.crew} actionText="Top Crew" />
+      <Recommendation
+        type="movie"
+        suggestions={movie.recommendations.results}
+      />
     </>
   );
 
