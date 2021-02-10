@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Loader from 'react-loader-spinner';
 import firebase from '../../firebase';
 import 'firebase/auth';
@@ -17,17 +18,25 @@ const Account = ({ auth }) => {
 
   if (auth.isSignedIn === null)
     return (
-      <Loader
-        className={style.loading}
-        type="TailSpin"
-        color="var(--white)"
-        height={80}
-        width={80}
-      />
+      <>
+        <Helmet>
+          <title>Account | Odeon</title>
+        </Helmet>
+        <Loader
+          className={style.loading}
+          type="TailSpin"
+          color="var(--white)"
+          height={80}
+          width={80}
+         />
+      </>
     );
   else if (auth.isSignedIn === true)
     return (
       <div className={style.wrapper}>
+        <Helmet>
+          <title>{`${auth.props.displayName} | Odeon`}</title>
+        </Helmet>
         <div>
           <img src={auth.props.photoURL} alt={auth.props.displayName} />
           <h2>{auth.props.displayName}</h2>

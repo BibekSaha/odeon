@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -53,6 +54,10 @@ const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
 
   const renderList = movie && (
     <>
+      <Helmet>
+        <title>{`${movie.original_title} | Odeon`}</title>
+      </Helmet>
+
       <Backdrop
         src={movie.backdrop_path || movie.poster_path}
         title={movie.original_title}

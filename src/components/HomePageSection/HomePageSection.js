@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -9,11 +10,12 @@ import Placeholder from '../Placeholder/Placeholder';
 import StarIcon from '../icons/StarIcon';
 import handleWatchlist from '../../utils/handleWatchlist';
 import dateFormatter from '../../utils/date';
+import formatTitle from '../../utils/formatTitle';
 import style from './HomePageSection.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const HomePageSection = ({ action, state, type, auth, watchlist }) => {
+const HomePageSection = ({ action, state, type, auth, watchlist, homePage }) => {
   const history = useHistory();
   const [current, setCurrent] = useState({});
   const [showLoader, setShowLoader] = useState(false);
@@ -97,15 +99,17 @@ const HomePageSection = ({ action, state, type, auth, watchlist }) => {
         width={80}
       />
     );
-
   return (
     <div>
+      <Helmet>
+        <title>{formatTitle(homePage.currentTab)} | Odeon</title>
+      </Helmet>
       <div className={style.homePageSectionWrapper}>{renderList}</div>
       <div className={style.homePageSectionDetails}>{renderDetails}</div>
     </div>
   );
 };
 
-const mapStateToProps = ({ auth, watchlist }) => ({ auth, watchlist });
+const mapStateToProps = ({ auth, watchlist, homePage }) => ({ auth, watchlist, homePage });
 
 export default connect(mapStateToProps)(HomePageSection);

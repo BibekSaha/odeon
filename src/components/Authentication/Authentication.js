@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -39,6 +40,9 @@ const Authentication = ({ auth, signInAction }) => {
 
   return auth.isSignedIn === false ? (
     <div className={style.wrapper}>
+      <Helmet>
+          <title>Login in to Odeon</title>
+        </Helmet>
       <div>
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           <h1 className={style.header}>Lemon Milk</h1>

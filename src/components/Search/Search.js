@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
@@ -17,6 +18,9 @@ const Search = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Search | Odeon</title>
+      </Helmet>
       <SearchBar />
       <SearchResults debouncedTerm={debouncedTerm} />
     </div>

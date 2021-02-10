@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { Helmet } from 'react-helmet';
 import { Redirect, useHistory } from 'react-router-dom';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { connect } from 'react-redux';
@@ -61,6 +62,9 @@ const WatchList = ({ auth, watchlist, watchlistFetched }) => {
   else
     return (
       <div className={style.watchlistWrapper}>
+        <Helmet>
+          <title>{`Watchlist (${watchlistFiltered.length}) | Odeon`}</title>
+        </Helmet>
         <div className={style.settingsWrapper}>
           <div>
             <WatchlistNumber />

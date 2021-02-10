@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
@@ -36,6 +37,9 @@ const PersonDetails = () => {
 
   return (
     <div className={style.person}>
+      <Helmet>
+        <title>{`${person.name} | Odeon`}</title>
+      </Helmet>
       <div className={style.imageWrapper}>
         <img
           className={style.posterImage}
