@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Dropdown from '../Dropdown/Dropdown';
+import OdeonLogo from '../icons/OdeonLogo';
 import style from './Header.module.css';
 
 const Header = ({ inlineStyle }) => {
@@ -8,7 +9,8 @@ const Header = ({ inlineStyle }) => {
 
   return (
     <div style={inlineStyle} className={style.headerWrapper}>
-      <h1 className={style.header}>Lemon Milk</h1>
+      {/* <h1 className={style.header}>Odeon</h1> */}
+      <a className={style.highlight} rel="noopener noreferrer" target="_blank" href="https://hover.ml/"><OdeonLogo width="8rem" /></a>
       {isHomePage.pathname === '/' && (
         <Dropdown className={style.headerDropdown} />
       )}
