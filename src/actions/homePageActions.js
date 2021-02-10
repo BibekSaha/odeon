@@ -14,7 +14,7 @@ import {
 const fetchData = async (currentPage, totalPages, url, extraQuery) => {
   if (totalPages && currentPage === totalPages) return;
   let resp = await fetch(
-    `${url}?api_key=${process.env.REACT_APP_TOKEN}&language=en-US&&page=${
+    `${url}?language=en-US&&page=${
       currentPage + 1
     }${extraQuery}`
   );
@@ -38,64 +38,64 @@ const actionCreator = (stateKey, url, type, extraQuery = '') => () => async (
 
 export const trendingMoviesAction = actionCreator(
   'trendingMovies',
-  'https://api.themoviedb.org/3/trending/movie/day',
+  'https://api.odeon.tk/trending/movie/day',
   TRENDING_MOVIES
 );
 
 export const popularMoviesAction = actionCreator(
   'popularMovies',
-  'https://api.themoviedb.org/3/movie/popular',
+  'https://api.odeon.tk/movie/popular',
   POPULAR_MOVIES
 );
 
 export const topRatedMoviesAction = actionCreator(
   'topRatedMovies',
-  'https://api.themoviedb.org/3/movie/top_rated',
+  'https://api.odeon.tk/movie/top_rated',
   TOP_RATED_MOVIES
 );
 
 export const dramaMoviesAction = actionCreator(
   'dramaMovies',
-  'https://api.themoviedb.org/3/discover/movie',
+  'https://api.odeon.tk/discover/movie',
   DRAMA_MOVIES,
   '&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=18'
 );
 
 export const mysteryMoviesAction = actionCreator(
   'mysteryMovies',
-  'https://api.themoviedb.org/3/discover/movie',
+  'https://api.odeon.tk/discover/movie',
   MYSTERY_MOVIES,
   '&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=9648'
 );
 
 export const trendingTvAction = actionCreator(
   'trendingTv',
-  'https://api.themoviedb.org/3/trending/tv/day',
+  'https://api.odeon.tk/trending/tv/day',
   TRENDING_TV,
 );
 
 export const popularTvAction = actionCreator(
   'popularTv',
-  'https://api.themoviedb.org/3/tv/popular',
+  'https://api.odeon.tk/tv/popular',
   POPULAR_TV
 );
 
 export const topRatedTvAction = actionCreator(
   'topRatedTv',
-  'https://api.themoviedb.org/3/tv/top_rated',
+  'https://api.odeon.tk/tv/top_rated',
   TOP_RATED_TV
 );
 
 export const netflixTvAction = actionCreator(
   'netflixTv',
-  'https://api.themoviedb.org/3/discover/tv',
+  'https://api.odeon.tk/discover/tv',
   NETFLIX_TV,
   '&sort_by=popularity.desc&timezone=America%2FNew_York&with_networks=213&include_null_first_air_dates=false'
 );
 
 export const amazonTvAction = actionCreator(
   'amazonTv',
-  'https://api.themoviedb.org/3/discover/tv',
+  'https://api.odeon.tk/discover/tv',
   AMAZON_TV,
   '&sort_by=popularity.desc&timezone=America%2FNew_York&with_networks=1024&include_null_first_air_dates=false'
 )
@@ -106,7 +106,7 @@ export const amazonTvAction = actionCreator(
 //   const { currentPage, totalPages } = trendingMovies;
 //   const payload = await fetchData(
 //     currentPage, totalPages,
-//     `https://api.themoviedb.org/3/trending/movie/day?api_key=${
+//     `https://api.odeon.tk/trending/movie/day?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&page=${currentPage + 1}`
 //   );
@@ -119,7 +119,7 @@ export const amazonTvAction = actionCreator(
 //   const { currentPage, totalPages } = popularMovies;
 //   const payload = await fetchData(
 //     currentPage, totalPages,
-//     `https://api.themoviedb.org/3/movie/popular?api_key=${
+//     `https://api.odeon.tk/movie/popular?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&language=en-US&&page=${currentPage + 1}`
 //   );
@@ -132,7 +132,7 @@ export const amazonTvAction = actionCreator(
 //   const { currentPage, totalPages } = topRatedMovies;
 //   const payload = await fetchData(
 //     currentPage, totalPages,
-//     `https://api.themoviedb.org/3/movie/top_rated?api_key=${
+//     `https://api.odeon.tk/movie/top_rated?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&language=en-US&&page=${currentPage + 1}`
 //   );
@@ -145,7 +145,7 @@ export const amazonTvAction = actionCreator(
 //   const { currentPage, totalPages } = dramaMovies;
 //   const payload = await fetchData(
 //     currentPage, totalPages,
-//     `https://api.themoviedb.org/3/discover/movie?api_key=${
+//     `https://api.odeon.tk/discover/movie?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${
 //       currentPage + 1
@@ -160,7 +160,7 @@ export const amazonTvAction = actionCreator(
 //   const { currentPage, totalPages } = mysteryMovies;
 //   const payload = await fetchData(
 //     currentPage, totalPages,
-//     `https://api.themoviedb.org/3/discover/movie?api_key=${
+//     `https://api.odeon.tk/discover/movie?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${
 //       currentPage + 1
@@ -176,7 +176,7 @@ export const amazonTvAction = actionCreator(
 //   const payload = await fetchData(
 //     currentPage,
 //     totalPages,
-//     `https://api.themoviedb.org/3/trending/tv/day?api_key=${
+//     `https://api.odeon.tk/trending/tv/day?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&page=${currentPage + 1}`
 //   );
@@ -190,7 +190,7 @@ export const amazonTvAction = actionCreator(
 //   const payload = await fetchData(
 //     currentPage,
 //     totalPages,
-//     `https://api.themoviedb.org/3/tv/popular?api_key=${
+//     `https://api.odeon.tk/tv/popular?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&language=en-US&&page=${currentPage + 1}`
 //   );
@@ -204,7 +204,7 @@ export const amazonTvAction = actionCreator(
 //   const payload = await fetchData(
 //     currentPage,
 //     totalPages,
-//     `https://api.themoviedb.org/3/tv/top_rated?api_key=${
+//     `https://api.odeon.tk/tv/top_rated?api_key=${
 //       process.env.REACT_APP_TOKEN
 //     }&language=en-US&&page=${currentPage + 1}`
 //   );

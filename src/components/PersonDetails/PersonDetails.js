@@ -14,7 +14,7 @@ const PersonDetails = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TOKEN}&language=en-US&append_to_response=images`
+      `https://api.odeon.tk/person/${id}?language=en-US&append_to_response=images`
     )
       .then(resp => resp.json())
       .then(resp => {

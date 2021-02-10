@@ -30,7 +30,7 @@ const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TOKEN}&language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
+      `https://api.odeon.tk/tv/${id}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
     )
       .then(resp => resp.json())
       .then(resp => setTv(resp));

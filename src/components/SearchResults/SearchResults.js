@@ -15,9 +15,7 @@ const SearchResults = ({ debouncedTerm }) => {
     if (debouncedTerm) {
       setShowLoader(true);
       fetch(
-        `https://api.themoviedb.org/3/search/multi?api_key=${
-          process.env.REACT_APP_TOKEN
-        }&language=en-US&query=${debouncedTerm}&page=1&include_adult=false`
+        `https://api.odeon.tk/search/multi?language=en-US&query=${debouncedTerm}&page=1&include_adult=false`
       )
         .then(resp => resp.json())
         .then(resp => {

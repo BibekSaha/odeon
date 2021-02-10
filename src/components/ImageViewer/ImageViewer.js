@@ -22,7 +22,7 @@ const ImageViewer = () => {
   return (
     <div className={style.imageWrapper}>
       <img
-        alt="Movies App by Bibek Saha"
+        alt="Odeon by Bibek Saha"
         src={`https://image.tmdb.org/t/p/w780/${imageId}`}
         className={style.image}
         // onLoad={() => setShowLoader(false)}
