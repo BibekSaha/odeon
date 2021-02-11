@@ -80,3 +80,9 @@
   margin-bottom: 2vh;
   font-family: 'karla', var(--fonts);
 }
+
+.header {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}

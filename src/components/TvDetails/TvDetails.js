@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -19,11 +19,13 @@ import Recommendation from '../detailsConstructor/Recommendation/Recommendation'
 import Credit from '../detailsConstructor/Credit';
 
 import handleWatchlist from '../../utils/handleWatchlist';
+import hashid from '../../utils/hashid';
 
 // import style from './TvDetails.module.css';
 
 const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
-  const { id } = useParams();
+  let { id } = useParams();
+  id = useRef(hashid.decode(id)).current;
   const history = useHistory();
   const [tv, setTv] = useState(null);
   const [showVideos, setShowVideos] = useState(false);

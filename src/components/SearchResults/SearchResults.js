@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Loader from 'react-loader-spinner';
 import ItemBlock from '../ItemBlock/ItemBlock';
+import hashid from '../../utils/hashid';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import style from './SearchResults.module.css';
 
@@ -34,7 +35,7 @@ const SearchResults = ({ debouncedTerm }) => {
             <React.Fragment key={result.id}>
               <div
                 onClick={() =>
-                  history.push(`/${result.media_type}/${result.id}`)
+                  history.push(`/${result.media_type}/${hashid.encode(result.id)}`)
                 }
                 className={style.searchResult}
               >

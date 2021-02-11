@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
+import OdeonLogo from '../icons/OdeonLogo';
 import { signInAction } from '../../actions/authenticationAction';
 import style from './Authentication.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -45,7 +46,8 @@ const Authentication = ({ auth, signInAction }) => {
         </Helmet>
       <div>
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <h1 className={style.header}>Lemon Milk</h1>
+          {/* <h1 className={style.header}>Lemon Milk</h1> */}
+          <OdeonLogo className={style.header} width="8rem" />
         </Link>
         <div onClick={handleOnClick} className={style.gSignInButton}>
           <div className={style.contentWrapper}>

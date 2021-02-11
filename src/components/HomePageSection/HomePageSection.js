@@ -11,6 +11,7 @@ import StarIcon from '../icons/StarIcon';
 import handleWatchlist from '../../utils/handleWatchlist';
 import dateFormatter from '../../utils/date';
 import formatTitle from '../../utils/formatTitle';
+import hashid from '../../utils/hashid'
 import style from './HomePageSection.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -49,7 +50,7 @@ const HomePageSection = ({ action, state, type, auth, watchlist, homePage }) => 
           // effect="blur"
           // threshold="500"
           onClick={() => {
-            history.push(`/${type}/${item.id}`);
+            history.push(`/${type}/${hashid.encode(item.id)}`);
           }}
           placeholder={<Placeholder />}
         />
@@ -70,7 +71,7 @@ const HomePageSection = ({ action, state, type, auth, watchlist, homePage }) => 
     <>
       <h1
         onClick={() => {
-          history.push(`/${type}/${current.id}`);
+          history.push(`/${type}/${hashid.encode(current.id)}`);
         }}
       >
         {current.title || current.name}

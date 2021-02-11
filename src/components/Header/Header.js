@@ -10,7 +10,9 @@ const Header = ({ inlineStyle }) => {
   return (
     <div style={inlineStyle} className={style.headerWrapper}>
       {/* <h1 className={style.header}>Odeon</h1> */}
-      <a className={style.highlight} rel="noopener noreferrer" target="_blank" href="https://hover.ml/"><OdeonLogo width="8rem" /></a>
+      <a className={style.highlight} rel="noopener noreferrer" target="_blank" href="https://hover.ml/">
+        <OdeonLogo width="8rem" />
+      </a>
       {isHomePage.pathname === '/' && (
         <Dropdown className={style.headerDropdown} />
       )}

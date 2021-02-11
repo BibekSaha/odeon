@@ -4,6 +4,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Placeholder from '../Placeholder/Placeholder';
 import StarIcon from '../icons/StarIcon';
 import dateFormatter from '../../utils/date';
+import hashid from '../../utils/hashid';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import style from './ItemBlock.module.css';
 
@@ -13,7 +14,7 @@ const ItemBlock = props => {
   return (
     <div>
       <Link
-        to={`/${props.media_type}/${props.id}`}
+        to={`/${props.media_type}/${hashid.encode(props.id)}`}
         style={{ color: 'inherit', textDecoration: 'none' }}
         key={props.id}
       >

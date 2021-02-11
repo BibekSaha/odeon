@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -7,9 +7,11 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import style from './PersonDetails.module.css';
 
 import dateFormatter from '../../utils/date';
+import hashid from '../../utils/hashid';
 
 const PersonDetails = () => {
-  const { id } = useParams();
+  let { id } = useParams();
+  id = useRef(hashid.decode(id)).current;
   const [showLoader, setShowLoader] = useState(true);
   const [person, setPerson] = useState(null);
 
