@@ -40,7 +40,13 @@ const App = ({ auth, initAddToWatchlist }) => {
       const db = firebase.firestore();
       const docRef = db.collection('users').doc(auth.props.uid);
       docRef.get().then(doc => {
-        if (doc.exists) initAddToWatchlist(doc.data());
+        if (doc.exists) {
+          // let encodedWatchlist = {};
+          // const watchlist = doc.data();
+          // Object.keys(watchlist).forEach(key => encodedWatchlist[hashid.encode(key)] = watchlist[key])
+          // initAddToWatchlist(encodedWatchlist);
+          initAddToWatchlist(doc.data());
+        }
         setWatchlistFetched(true);
       });
       docRef.onSnapshot(doc => {

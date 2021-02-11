@@ -88,7 +88,7 @@ const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
       </DetailsSection>
 
       <WatchlistButton
-        isPresent={!!watchlist[id]}
+        isPresent={!!watchlist[hashid.decode(id)]}
         onClick={handleOnClick}
         auth={auth}
         watchlistFetched={watchlistFetched}
