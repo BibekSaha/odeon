@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -25,8 +25,7 @@ import hashid from '../../utils/hashid';
 import style from './MovieDetails.module.css';
 
 const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
-  let { id } = useParams();
-  id = useRef(hashid.decode(id)).current;
+  const { id } = useParams();
   const history = useHistory();
   const [movie, setMovie] = useState(null);
   const [showVideos, setShowVideos] = useState(false);
@@ -34,7 +33,7 @@ const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
-      `https://api.odeon.tk/movie/${id}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
+      `https://api.odeon.tk/movie/${hashid.decode(id)}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
     )
       .then(resp => resp.json())
       .then(resp => setMovie(resp));
@@ -47,7 +46,7 @@ const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
   }, [id]);
 
   const handleOnClick = () => {
-    if (!auth.isSignedIn) history.push(`/login?redirect=movie/${id}`);
+    if (!auth.isSignedIn) history.push(`/login?redirect=movie/${hashid.decode(id)}`);
     else {
       handleWatchlist(auth, watchlist, movie, 'movie');
       window.navigator.vibrate(50);

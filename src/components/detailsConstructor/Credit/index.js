@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import hashid from '../../../utils/hashid';
 import style from './style.module.css';
 
 const Credit = ({ actionText, people }) => {
@@ -12,7 +13,7 @@ const Credit = ({ actionText, people }) => {
       <Link
         style={{ color: 'inherit', textDecoration: 'none' }}
         key={id + i}
-        to={`/person/${id}`}
+        to={`/person/${hashid.encode(id)}`}
       >
         <div className={style.creditContainer}>
           <LazyLoadImage

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import hashid from '../../../utils/hashid';
 import style from './Recommendation.module.css';
 
 const Recommendation = ({ type, suggestions }) => {
   const renderList = suggestions.map(
     suggestion =>
       suggestion.poster_path && (
-        <Link key={suggestion.id} to={`/${type}/${suggestion.id}`}>
+        <Link key={suggestion.id} to={`/${type}/${hashid.encode(suggestion.id)}`}>
           <LazyLoadImage
             src={`https://image.tmdb.org/t/p/w200${suggestion.poster_path}`}
             alt={suggestion.title}

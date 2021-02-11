@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -25,7 +25,6 @@ import hashid from '../../utils/hashid';
 
 const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
   let { id } = useParams();
-  id = useRef(hashid.decode(id)).current;
   const history = useHistory();
   const [tv, setTv] = useState(null);
   const [showVideos, setShowVideos] = useState(false);
@@ -33,7 +32,7 @@ const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
-      `https://api.odeon.tk/tv/${id}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
+      `https://api.odeon.tk/tv/${hashid.decode(id)}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
     )
       .then(resp => resp.json())
       .then(resp => setTv(resp));
@@ -46,7 +45,7 @@ const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
   }, [id]);
 
   const handleOnClick = useCallback(() => {
-    if (!auth.isSignedIn) history.push(`/login?redirect=tv/${id}`);
+    if (!auth.isSignedIn) history.push(`/login?redirect=tv/${hashid.decode(id)}`);
     else {
       handleWatchlist(auth, watchlist, tv, 'tv');
       window.navigator.vibrate(50);
