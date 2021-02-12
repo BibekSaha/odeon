@@ -58,7 +58,7 @@ const SearchResults = ({ debouncedTerm }) => {
                   {result.known_for.map(item => (
                     <div
                       onClick={() =>
-                        history.push(`/${item.media_type}/${item.id}`)
+                        history.push(`/${item.media_type}/${hashid.encode(item.id)}`)
                       }
                       key={item.id}
                     >
