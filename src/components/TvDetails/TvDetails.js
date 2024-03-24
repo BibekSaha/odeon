@@ -45,7 +45,8 @@ const TvDetails = ({ auth, watchlist, watchlistFetched }) => {
   }, [id]);
 
   const handleOnClick = useCallback(() => {
-    if (!auth.isSignedIn) history.push(`/login?redirect=tv/${hashid.decode(id)}`);
+    const hashedId = hashid.isValidId(id) ? id : hashid.encode(id);
+    if (!auth.isSignedIn) history.push(`/login?redirect=tv/${hashedId}`);
     else {
       handleWatchlist(auth, watchlist, tv, 'tv');
       window.navigator.vibrate(50);
