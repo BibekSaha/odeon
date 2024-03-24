@@ -46,7 +46,8 @@ const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
   }, [id]);
 
   const handleOnClick = () => {
-    if (!auth.isSignedIn) history.push(`/login?redirect=movie/${hashid.decode(id)}`);
+    const hashedId = hashid.isValidId(id) ? id : hashid.encode(id);
+    if (!auth.isSignedIn) history.push(`/login?redirect=movie/${hashedId}`);
     else {
       handleWatchlist(auth, watchlist, movie, 'movie');
       window.navigator.vibrate(50);
