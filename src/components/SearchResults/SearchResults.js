@@ -16,7 +16,7 @@ const SearchResults = ({ debouncedTerm }) => {
     if (debouncedTerm) {
       setShowLoader(true);
       fetch(
-        `https://api.odeon.tk/search/multi?language=en-US&query=${debouncedTerm}&page=1&include_adult=false`
+        `https://odeon-api.netlify.app/search/multi?language=en-US&query=${debouncedTerm}&page=1&include_adult=false`
       )
         .then(resp => resp.json())
         .then(resp => {

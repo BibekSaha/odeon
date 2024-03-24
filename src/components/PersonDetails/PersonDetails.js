@@ -17,7 +17,7 @@ const PersonDetails = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.odeon.tk/person/${id}?language=en-US&append_to_response=images`
+      `https://odeon-api.netlify.app/person/${id}?language=en-US&append_to_response=images`
     )
       .then(resp => resp.json())
       .then(resp => {

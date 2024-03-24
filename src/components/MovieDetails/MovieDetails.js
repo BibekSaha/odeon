@@ -33,7 +33,7 @@ const MovieDetails = ({ auth, watchlist, watchlistFetched }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(
-      `https://api.odeon.tk/movie/${hashid.decode(id)}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
+      `https://odeon-api.netlify.app/movie/${hashid.decode(id)}?language=en-US&append_to_response=videos%2Ccredits%2Crecommendations`
     )
       .then(resp => resp.json())
       .then(resp => setMovie(resp));
